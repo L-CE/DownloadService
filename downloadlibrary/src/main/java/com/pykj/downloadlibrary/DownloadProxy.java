@@ -16,14 +16,14 @@ public class DownloadProxy {
     private MaterialDialog progressDialog;
     private boolean showProgress;
 
-    public void downloadAPK(final Activity activity, String url, final String updateMessage) {
+    public void downloadAPK(final Activity activity, String url, final String updateMessage,final String authority) {
         progressDialog = null;
         DownloadManager.getInstance(activity)
                 .download(url, new DownloadCallBack() {
                     @Override
                     public void success(DownloadInfo downloadInfo) {
                         progressDialog.dismiss();
-                        AppUtils.installApp(downloadInfo.getFilePath(), null);
+                        AppUtils.installApp(downloadInfo.getFilePath(), authority);
                     }
 
                     @Override
